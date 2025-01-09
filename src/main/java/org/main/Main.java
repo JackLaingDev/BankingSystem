@@ -1,9 +1,12 @@
 package org.main;
 
+import controllers.Controller;
 import services.DatabaseService;
 
 public class Main {
     public static void main(String[] args) {
-        DatabaseService db = new DatabaseService();
+        Controller controller = new Controller();
+        
+        controller.run();
     }
 }
