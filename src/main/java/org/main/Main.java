@@ -1,7 +1,9 @@
 package org.main;
 
+import services.DatabaseService;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        DatabaseService db = new DatabaseService();
     }
 }
