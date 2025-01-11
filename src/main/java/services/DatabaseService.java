@@ -54,10 +54,13 @@ public class DatabaseService {
     }
 
     public void createAccount(Account account) throws SQLException{
-        sql = "INSERT INTO accounts (customerID) VALUES (?)";
+        sql = "INSERT INTO accounts (customerID, accountID, accountType, balance) VALUES (?, ?, ?, ?)";
 
         try(PreparedStatement statement = prepareStatement(sql)){
             statement.setInt(1, account.getCustomerID());
+            statement.setInt(2, account.getAccountID());
+            statement.setInt(3, account.getAccountType());
+            statement.setBigDecimal(4, account.getBalance());
 
             statement.executeUpdate();
         }
@@ -154,20 +157,26 @@ public class DatabaseService {
     public Account getAccount(int AccountID)throws SQLException{
         sql = "SELECT * FROM accounts WHERE accountID = ?";
 
+        // Initialise account
+        Account account = new Account(0, 0, 0, BigDecimal.ZERO);
+
         try(PreparedStatement statement = prepareStatement(sql)){
             statement.setInt(1, AccountID);
 
             try(ResultSet resultSet = statement.executeQuery()){
-
-                // Only one result possible as AccountID is a Unique column (Primary Key)
-                int accountID = resultSet.getInt("accountID");
-                int customerID = resultSet.getInt("customerID");
-                int accountType = resultSet.getInt("accountType");
-                BigDecimal balance = resultSet.getBigDecimal("balance");
-
-                return new Account(accountID, customerID, accountType, balance);
+                if(resultSet.next()) {
+                    // Only one result possible as AccountID is a Unique column (Primary Key)
+                    account.setAccountID(resultSet.getInt("accountID"));
+                    account.setCustomerID(resultSet.getInt("customerID"));
+                    account.setAccountType(resultSet.getInt("accountType"));
+                    account.setBalance(resultSet.getBigDecimal("balance"));
+                }
+                else{
+                    return null;
+                }
             }
         }
+        return account;
     }
 
     public void closeConnection() {
