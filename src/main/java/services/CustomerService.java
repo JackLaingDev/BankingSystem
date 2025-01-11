@@ -30,7 +30,7 @@ public class CustomerService {
     }
 
     public List<Account> getAccounts() throws SQLException{
-        
+        return db.getCustAccounts(customer);
     }
 
 }
