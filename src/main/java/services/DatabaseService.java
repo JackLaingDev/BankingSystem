@@ -165,8 +165,7 @@ public class DatabaseService {
                 int accountType = resultSet.getInt("accountType");
                 BigDecimal balance = resultSet.getBigDecimal("balance");
 
-                Account account = new Account(accountID, customerID, accountType, balance);
-                return account;
+                return new Account(accountID, customerID, accountType, balance);
             }
         }
     }
