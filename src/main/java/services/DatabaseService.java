@@ -151,6 +151,26 @@ public class DatabaseService {
         }
     }
 
+    public Account getAccount(int AccountID)throws SQLException{
+        sql = "SELECT * FROM accounts WHERE accountID = ?";
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setInt(1, AccountID);
+
+            try(ResultSet resultSet = statement.executeQuery()){
+
+                // Only one result possible as AccountID is a Unique column (Primary Key)
+                int accountID = resultSet.getInt("accountID");
+                int customerID = resultSet.getInt("customerID");
+                int accountType = resultSet.getInt("accountType");
+                BigDecimal balance = resultSet.getBigDecimal("balance");
+
+                Account account = new Account(accountID, customerID, accountType, balance);
+                return account;
+            }
+        }
+    }
+
     public void closeConnection() {
         try {
             if (connection != null) {
