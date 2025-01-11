@@ -11,7 +11,8 @@ public class Account {
     private BigDecimal balance;
 
     // Constructor
-    public Account(int customerID, int accountType, BigDecimal balance) {
+    public Account(int accountID, int customerID, int accountType, BigDecimal balance) {
+        this.accountID = accountID;
         this.customerID = customerID;
         this.accountType = accountType;
         this.balance = balance;
