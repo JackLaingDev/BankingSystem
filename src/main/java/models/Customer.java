@@ -10,8 +10,7 @@ public class Customer {
     private String password;
 
     // Constructor
-    public Customer(int customerID, String firstName, String lastName,String password, String username){
-        this.customerID = customerID;
+    public Customer(String firstName, String lastName,String password, String username){
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
