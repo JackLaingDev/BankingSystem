@@ -1,4 +1,4 @@
-package org.main;
+package main;
 
 import controllers.Controller;
 import services.DatabaseService;
@@ -6,7 +6,6 @@ import services.DatabaseService;
 public class Main {
     public static void main(String[] args) {
         Controller controller = new Controller();
-
         controller.run();
     }
 }

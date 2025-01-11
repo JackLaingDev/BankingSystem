@@ -1,7 +1,8 @@
 package services;
 
-import models.Account;
 import services.DatabaseService;
+
+import models.Account;
 
 public class AccountService{
 

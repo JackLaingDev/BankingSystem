@@ -1,15 +1,22 @@
 package services;
 
 import java.sql.*; // Import JDBC classes
+import models.Customer;
+import models.Transaction;
+import models.Account;
 
 public class DatabaseService {
 
+    // DB Settings
     private static final String DB_URL = "jdbc:mysql://localhost:3306/bankingdb"; // Replace with your DB URL
     private static final String DB_USER = "root";     // Replace with your DB username
     private static final String DB_PASSWORD = "jacklaing"; // Replace with your DB password
 
+    // Attributes
     private Connection connection;
+    private String sql;
 
+    // Constructor
     public DatabaseService() {
         try {
             // Load the JDBC driver (not strictly needed in modern JDBC but good practice)
@@ -24,6 +31,13 @@ public class DatabaseService {
         }
     }
 
+    // Methods
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        return connection.prepareStatement(sql);
+    }
+
+    public createCustomer()
+
     public void closeConnection() {
         try {
             if (connection != null) {
@@ -34,3 +48,15 @@ public class DatabaseService {
         }
     }
 }
+/*
+
+
+    // Example usage (in AccountService or another service):
+    public void updateAccountBalance(int accountId, int newBalance) throws SQLException {
+        String sql = "UPDATE Account SET balance = ? WHERE accountID = ?";
+        try (PreparedStatement statement = prepareStatement(sql)) {
+            statement.setInt(1, newBalance); // Set the balance
+            statement.setInt(2, accountId);  // Set the account ID
+            statement.executeUpdate();
+        }
+    }*/
