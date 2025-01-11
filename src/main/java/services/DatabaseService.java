@@ -107,6 +107,39 @@ public class DatabaseService {
         return accounts;
     }
 
+    public List<Transaction> getAccTransactions(Account account) throws SQLException{
+        List<Transaction> transactions = new ArrayList<>();
+
+        sql = "SELECT * FROM transactions WHERE senderID = ? OR recipientID = ?";
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setInt(1, account.getAccountID());
+            statement.setInt(2, account.getAccountID());
+
+            // Get resultSet
+            try(ResultSet resultSet = statement.executeQuery()){
+
+                // Iterate through resultSet, adding each account to accounts
+                while(resultSet.next()){
+
+                    // Get results
+                    int transactionID = resultSet.getInt("transactionID");
+                    int senderID = resultSet.getInt("senderID");
+                    int recipientID = resultSet.getInt("recipientID");
+                    BigDecimal amount = resultSet.getBigDecimal("amount");
+
+                    // Create account object with results
+                    Transaction transaction = new Transaction(transactionID,senderID, recipientID, amount);
+
+                    // Add account to accounts
+                    transactions.add(transaction);
+                }
+            }
+        }
+
+        return transactions;
+    }
+
     public void closeConnection() {
         try {
             if (connection != null) {
@@ -117,15 +150,3 @@ public class DatabaseService {
         }
     }
 }
-/*
-
-
-    // Example usage (in AccountService or another service):
-    public void updateAccountBalance(int accountId, int newBalance) throws SQLException {
-        String sql = "UPDATE Account SET balance = ? WHERE accountID = ?";
-        try (PreparedStatement statement = prepareStatement(sql)) {
-            statement.setInt(1, newBalance); // Set the balance
-            statement.setInt(2, accountId);  // Set the account ID
-            statement.executeUpdate();
-        }
-    }*/
