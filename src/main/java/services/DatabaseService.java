@@ -154,14 +154,14 @@ public class DatabaseService {
         }
     }
 
-    public Account getAccount(int AccountID)throws SQLException{
+    public Account getAccount(int accountID)throws SQLException{
         sql = "SELECT * FROM accounts WHERE accountID = ?";
 
         // Initialise account
         Account account = new Account(0, 0, 0, BigDecimal.ZERO);
 
         try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setInt(1, AccountID);
+            statement.setInt(1, accountID);
 
             try(ResultSet resultSet = statement.executeQuery()){
                 if(resultSet.next()) {
@@ -177,6 +177,16 @@ public class DatabaseService {
             }
         }
         return account;
+    }
+
+    public void deleteAccount(int accountID) throws SQLException{
+        sql = "DELETE * FROM accounts WHERE accountID = ?";
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setInt(1, accountID);
+
+            statement.executeUpdate();
+        }
     }
 
     public void closeConnection() {
