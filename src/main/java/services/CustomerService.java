@@ -22,15 +22,13 @@ public class CustomerService {
 
     // Getters and Setters
     public Customer getCustomer(){return customer;}
+    public List<Account> getAccounts() throws SQLException{return db.getCustAccounts(customer);}
+
     public void setCustomer(Customer customer){this.customer = customer;}
 
     //Methods
     public void createCustomer() throws SQLException {
         db.createCustomer(customer);
-    }
-
-    public List<Account> getAccounts() throws SQLException{
-        return db.getCustAccounts(customer);
     }
 
 }
