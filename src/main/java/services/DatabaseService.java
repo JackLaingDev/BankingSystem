@@ -1,6 +1,10 @@
 package services;
 
+import java.math.BigDecimal;
 import java.sql.*; // Import JDBC classes
+import java.util.List;
+import java.util.ArrayList;
+
 import models.Customer;
 import models.Transaction;
 import models.Account;
@@ -69,6 +73,38 @@ public class DatabaseService {
 
             statement.executeUpdate();
         }
+    }
+
+    public List<Account> getCustAccounts(Customer customer) throws SQLException{
+        List<Account> accounts = new ArrayList<>();
+
+        sql = "SELECT FROM accounts * WHERE customerID = ?";
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setInt(1, customer.getCustomerID());
+
+            // Get resultSet
+            try(ResultSet resultSet = statement.executeQuery()){
+
+                // Iterate through resultSet, adding each account to accounts
+                while(resultSet.next()){
+
+                    // Get results
+                    int accountID = resultSet.getInt("accountID");
+                    int customerID = resultSet.getInt("customerID");
+                    int accountType = resultSet.getInt("accountType");
+                    BigDecimal balance = resultSet.getBigDecimal("balance");
+
+                    // Create account object with results
+                    Account account = new Account(accountID,customerID, accountType, balance);
+
+                    // Add account to accounts
+                    accounts.add(account);
+                }
+            }
+        }
+
+        return accounts;
     }
 
     public void closeConnection() {
