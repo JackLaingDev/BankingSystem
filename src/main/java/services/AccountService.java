@@ -13,9 +13,8 @@ public class AccountService{
     DatabaseService db = new DatabaseService();
 
     // Constructor
-    public AccountService(Account account) throws SQLException {
+    public AccountService(Account account) {
         this.account = account;
-        db.createAccount(account);
     }
 
     // Getters and Setters
