@@ -189,6 +189,16 @@ public class DatabaseService {
         }
     }
 
+    public void deleteCustomer(int customerID) throws SQLException{
+        sql = "DELETE FROM customers WHERE customerID = ?";
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setInt(1, customerID);
+
+            statement.executeUpdate();
+        }
+    }
+
     public void closeConnection() {
         try {
             if (connection != null) {
