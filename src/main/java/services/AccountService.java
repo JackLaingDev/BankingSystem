@@ -8,6 +8,7 @@ public class AccountService{
 
     // Attributes
     private Account account;
+    DatabaseService db = new DatabaseService();
 
     // Constructor
     public AccountService(Account account){
