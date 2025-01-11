@@ -1,15 +1,17 @@
 package models;
 
+import java.math.BigDecimal;
+
 public class Transaction {
 
     // Attributes
     private int transactionID;
     private int senderID;
     private int recipientID;
-    private int amount;
+    private BigDecimal amount;
 
     // Constructor
-    public Transaction(int transactionID, int senderID, int recipientID, int amount){
+    public Transaction(int transactionID, int senderID, int recipientID, BigDecimal amount){
         this.transactionID = transactionID;
         this.senderID = senderID;
         this.recipientID = recipientID;
@@ -26,7 +28,7 @@ public class Transaction {
     public int getRecipientID(){return recipientID;}
     public void setRecipientID(int recipientID){this.recipientID = recipientID;}
 
-    public int getAmount(){return amount;}
-    public void setAmount(int amount){this.amount = amount;}
+    public BigDecimal getAmount(){return amount;}
+    public void setAmount(BigDecimal amount){this.amount = amount;}
 
 }
