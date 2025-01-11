@@ -180,7 +180,7 @@ public class DatabaseService {
     }
 
     public void deleteAccount(int accountID) throws SQLException{
-        sql = "DELETE * FROM accounts WHERE accountID = ?";
+        sql = "DELETE FROM accounts WHERE accountID = ?";
 
         try(PreparedStatement statement = prepareStatement(sql)){
             statement.setInt(1, accountID);
