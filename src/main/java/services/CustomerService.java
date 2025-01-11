@@ -3,8 +3,11 @@ package services;
 import services.DatabaseService;
 
 import models.Customer;
+import models.Account;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerService {
 
@@ -24,6 +27,10 @@ public class CustomerService {
     //Methods
     public void createCustomer() throws SQLException {
         db.createCustomer(customer);
+    }
+
+    public List<Account> getAccounts() throws SQLException{
+        
     }
 
 }
