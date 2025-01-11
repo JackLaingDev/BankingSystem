@@ -22,6 +22,8 @@ public class AccountService{
     public void setAccount(Account account){this.account = account;}
 
     // Methods
-
+    public void createAccount() throws SQLException {
+        db.createAccount(account);
+    }
 
 }
