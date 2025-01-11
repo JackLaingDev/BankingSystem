@@ -140,11 +140,11 @@ public class DatabaseService {
         return transactions;
     }
 
-    public void setAccountBalance(Account account, int amount) throws SQLException{
+    public void setAccountBalance(Account account, BigDecimal amount) throws SQLException{
         sql = "UPDATE accounts SET balance = ? WHERE accountID = ?";
 
         try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setInt(1, amount);
+            statement.setBigDecimal(1, amount);
             statement.setInt(2, account.getAccountID());
 
             statement.executeUpdate();
