@@ -32,6 +32,10 @@ public class AccountService{
         db.createAccount(account);
     }
 
+    public void closeAccount() throws SQLException {
+        db.deleteAccount(account.getAccountID());
+    }
+
     public void makeTransaction(Transaction transaction) throws SQLException {
         DatabaseService db = new DatabaseService();
 
