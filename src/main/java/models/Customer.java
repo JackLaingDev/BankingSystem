@@ -6,12 +6,16 @@ public class Customer {
     private int customerID;
     private String firstName;
     private String lastName;
+    private String username;
+    private String password;
 
     // Constructor
-    public Customer(int customerID, String firstName, String lastName){
+    public Customer(int customerID, String firstName, String lastName,String password, String username){
         this.customerID = customerID;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.username = username;
+        this.password = password;
     }
 
     // Getters and Setters
