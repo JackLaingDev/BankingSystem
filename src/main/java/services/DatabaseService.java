@@ -42,6 +42,17 @@ public class DatabaseService {
         try(PreparedStatement statement = prepareStatement(sql)){
             statement.setString(1, customer.getFirstName());
             statement.setString(2, customer.getLastName());
+
+            statement.executeUpdate();
+        }
+    }
+
+    public void createAccount(Account account, Customer customer) throws SQLException{
+        sql = "INSERT INTO accounts (customerID) VALUES (?)";
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setInt(1, customer.getCustomerID());
+            
             statement.executeUpdate();
         }
     }
