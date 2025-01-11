@@ -47,12 +47,24 @@ public class DatabaseService {
         }
     }
 
-    public void createAccount(Account account, Customer customer) throws SQLException{
+    public void createAccount(Account account) throws SQLException{
         sql = "INSERT INTO accounts (customerID) VALUES (?)";
 
         try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setInt(1, customer.getCustomerID());
-            
+            statement.setInt(1, account.getCustomerID());
+
+            statement.executeUpdate();
+        }
+    }
+
+    public void createTransaction(Transaction transaction) throws SQLException{
+        sql = "INSERT INTO transactions (senderID, recipientID, amount) VALUES (?,?,?)";
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setInt(1, transaction.getSenderID());
+            statement.setInt(2, transaction.getRecipientID());
+            statement.setBigDecimal(3, transaction.getAmount());
+
             statement.executeUpdate();
         }
     }
