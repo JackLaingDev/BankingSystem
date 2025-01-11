@@ -4,6 +4,8 @@ import services.DatabaseService;
 
 import models.Account;
 
+import java.sql.SQLException;
+
 public class AccountService{
 
     // Attributes
@@ -11,8 +13,9 @@ public class AccountService{
     DatabaseService db = new DatabaseService();
 
     // Constructor
-    public AccountService(Account account){
+    public AccountService(Account account) throws SQLException {
         this.account = account;
+        db.createAccount(account);
     }
 
     // Getters and Setters
