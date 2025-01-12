@@ -179,6 +179,32 @@ public class DatabaseService {
         return account;
     }
 
+    public Customer getCustomer(int customerID)throws SQLException{
+        sql = "SELECT * FROM accounts WHERE accountID = ?";
+
+        // Initialise account
+        Customer customer = new Customer(0, "", "", "", "");
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setInt(1, customerID);
+
+            try(ResultSet resultSet = statement.executeQuery()){
+                if(resultSet.next()) {
+                    // Only one result possible as CustomerID is a Unique column (Primary Key)
+                    customer.setCustomerID(resultSet.getInt("customerID"));
+                    customer.setFirstName(resultSet.getString("firstName"));
+                    customer.setLastName(resultSet.getString("lastName"));
+                    customer.setPassword(resultSet.getString("password"));
+                    customer.setUsername(resultSet.getString("username"));
+                }
+                else{
+                    return null;
+                }
+            }
+        }
+        return customer;
+    }
+
     public void deleteAccount(int accountID) throws SQLException{
         sql = "DELETE FROM accounts WHERE accountID = ?";
 
