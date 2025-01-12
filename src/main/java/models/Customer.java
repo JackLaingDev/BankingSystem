@@ -8,6 +8,7 @@ public class Customer {
     private String lastName;
     private String username;
     private String password;
+    private boolean isClosed;
 
     // Constructor
     public Customer(int customerID, String firstName, String lastName,String password, String username){
@@ -16,6 +17,7 @@ public class Customer {
         this.lastName = lastName;
         this.username = username;
         this.password = password;
+        this.isClosed = false;
     }
 
     // Getters and Setters
@@ -34,5 +36,6 @@ public class Customer {
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
 
-
+    public boolean isClosed() {return isClosed;}
+    public void setClosed(boolean closed) {isClosed = closed;}
 }
