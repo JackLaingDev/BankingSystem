@@ -31,4 +31,8 @@ public class CustomerService {
         db.createCustomer(customer);
     }
 
+    public void closeCustomer() throws SQLException{
+        db.deleteCustomer(customer);
+    }
+
 }

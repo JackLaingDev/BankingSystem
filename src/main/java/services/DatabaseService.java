@@ -180,7 +180,7 @@ public class DatabaseService {
     }
 
     public Customer getCustomer(int customerID)throws SQLException{
-        sql = "SELECT * FROM accounts WHERE accountID = ?";
+        sql = "SELECT * FROM customers WHERE customerID = ?";
 
         // Initialise account
         Customer customer = new Customer(0, "", "", "", "");
@@ -205,21 +205,23 @@ public class DatabaseService {
         return customer;
     }
 
-    public void deleteAccount(int accountID) throws SQLException{
-        sql = "DELETE FROM accounts WHERE accountID = ?";
+    public void deleteAccount(Account account) throws SQLException{
+        sql = "UPDATE accounts SET isClosed = ? WHERE accountID = ?";
 
         try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setInt(1, accountID);
+            statement.setBoolean(1, true);
+            statement.setInt(2, account.getAccountID());
 
             statement.executeUpdate();
         }
     }
 
-    public void deleteCustomer(int customerID) throws SQLException{
-        sql = "DELETE FROM customers WHERE customerID = ?";
+    public void deleteCustomer(Customer customer) throws SQLException{
+        sql = "UPDATE customers SET isClosed = ? WHERE customerID = ?";
 
         try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setInt(1, customerID);
+            statement.setBoolean(1, true);
+            statement.setInt(2, customer.getCustomerID());
 
             statement.executeUpdate();
         }

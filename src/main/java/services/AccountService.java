@@ -33,7 +33,7 @@ public class AccountService{
     }
 
     public void closeAccount() throws SQLException {
-        db.deleteAccount(account.getAccountID());
+        db.deleteAccount(account);
     }
 
     public void makeTransaction(Transaction transaction) throws SQLException {
