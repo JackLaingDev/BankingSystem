@@ -49,6 +49,8 @@ public class DatabaseService {
             statement.setString(4, customer.getPassword());
 
             statement.executeUpdate();
+        }catch (SQLIntegrityConstraintViolationException e) {
+            System.err.println("Username already exists. Please choose a different username.");
         }
     }
     public void deleteCustomer(Customer customer) throws SQLException{

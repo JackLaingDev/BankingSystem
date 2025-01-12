@@ -6,6 +6,7 @@ import models.Customer;
 import models.Account;
 
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class CustomerService {
     }
 
     // Getters and Setters
-    public Customer getCustomer(){return customer;}
-    public List<Account> getAccounts() throws SQLException{return db.getCustAccounts(customer);}
+    public Customer getCustomer(){return this.customer;}
+    public List<Account> getAccounts() throws SQLException{return db.getCustAccounts(this.customer);}
 
     public void setCustomer(Customer customer){this.customer = customer;}
 
@@ -33,12 +34,12 @@ public class CustomerService {
     }
 
     public void closeCustomer() throws SQLException{
-        db.deleteCustomer(customer);
+        this.db.deleteCustomer(this.customer);
     }
 
     public void login(String userName, String password) throws SQLException {
 
-        Customer customer = db.getCustomer(userName);
+        Customer customer = this.db.getCustomer(userName);
         String custPassword = customer.getPassword();
 
         if(customer == null){
@@ -51,5 +52,11 @@ public class CustomerService {
             this.customer = customer;
             System.out.println("Customer Successfully Logged In");
         }
+    }
+
+    public void register(String userName, String password, String firstName, String lastName) throws SQLException{
+        Customer customer = new Customer(0, firstName, lastName, password, userName);
+
+        db.createCustomer(customer);
     }
 }
