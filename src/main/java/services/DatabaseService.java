@@ -78,9 +78,36 @@ public class DatabaseService {
                     customer.setLastName(resultSet.getString("lastName"));
                     customer.setPassword(resultSet.getString("password"));
                     customer.setUsername(resultSet.getString("username"));
+                    customer.setIsClosed(resultSet.getBoolean("isClosed"));
                 }
                 else{
                     return null;
+                }
+            }
+        }
+        return customer;
+    }
+    public Customer getCustomer(String userName) throws SQLException{
+        sql = "SELECT * FROM customers WHERE username = ?";
+
+        // Initialise customer
+        Customer customer = new Customer(0, "", "", "", "");
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setString(1, userName);
+
+            try(ResultSet resultSet = statement.executeQuery()){
+                if(resultSet.next()) {
+                    // Only one result possible as CustomerID is a Unique column (Primary Key)
+                    customer.setCustomerID(resultSet.getInt("customerID"));
+                    customer.setFirstName(resultSet.getString("firstName"));
+                    customer.setLastName(resultSet.getString("lastName"));
+                    customer.setPassword(resultSet.getString("password"));
+                    customer.setUsername(resultSet.getString("username"));
+                    customer.setIsClosed(resultSet.getBoolean("isClosed"));
+                }
+                else{
+                    return customer;
                 }
             }
         }

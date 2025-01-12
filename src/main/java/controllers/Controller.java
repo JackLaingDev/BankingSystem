@@ -1,5 +1,6 @@
 package controllers;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import services.AccountService;
@@ -38,7 +39,7 @@ public class Controller {
         this.accountSetup = new accountSetup(scanner);
     }
 
-    public void run(){
+    public void run() throws SQLException {
         // 0 = account set up
         // 1 = main menu
 
@@ -56,7 +57,7 @@ public class Controller {
                 case 1:
                     userName = accountSetup.getUsername();
                     password = accountSetup.getPassword();
-                    //custServ.login(userName, password);
+                    custServ.login(userName, password);
                     break;
                 case 2:
                     userName = accountSetup.getNewUsername();

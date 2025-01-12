@@ -36,4 +36,20 @@ public class CustomerService {
         db.deleteCustomer(customer);
     }
 
+    public void login(String userName, String password) throws SQLException {
+
+        Customer customer = db.getCustomer(userName);
+        String custPassword = customer.getPassword();
+
+        if(customer == null){
+            System.out.println("No Customer With This Username exists");
+        }
+        else if (customer.getIsClosed()) {
+            System.out.println("This Customer Account Is Closed");
+        }
+        else if (custPassword.equals(password)) {
+            this.customer = customer;
+            System.out.println("Customer Successfully Logged In");
+        }
+    }
 }

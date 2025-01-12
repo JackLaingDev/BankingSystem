@@ -16,7 +16,9 @@ public class accountSetup {
     public int displayMenu(){
         // Get main menu option
         System.out.println(mainMenu);
-        return scanner.nextInt();
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        return choice;
     }
 
     public String getUsername(){

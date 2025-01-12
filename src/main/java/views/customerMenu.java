@@ -1,4 +1,4 @@
 package views;
 
-public class mainMenu {
+public class customerMenu {
 }

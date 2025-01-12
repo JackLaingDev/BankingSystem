@@ -37,5 +37,5 @@ public class Customer {
     public void setPassword(String password) {this.password = password;}
 
     public boolean getIsClosed() {return isClosed;}
-    public void setClosed(boolean closed) {isClosed = closed;}
+    public void setIsClosed(boolean closed) {isClosed = closed;}
 }
