@@ -34,16 +34,19 @@ public class Controller {
         this.custServ = custServ;
         this.transServ = transServ;
         this.db = db;
+
+        this.accountSetup = new accountSetup(scanner);
     }
 
     public void run(){
         // 0 = account set up
         // 1 = main menu
-
+        this.running = true;
 
         System.out.println("Starting up Banking System");
-        while(true){
+        while(running){
 
+            accountSetup.displayMenu();
         }
     }
 
