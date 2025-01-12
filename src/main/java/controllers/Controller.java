@@ -6,33 +6,28 @@ import services.AccountService;
 import services.CustomerService;
 
 public class Controller {
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
+    private AccountService accServ;
+    private CustomerService custServ;
+    private TransactionService transServ;
+    private DatabaseService db;
 
+    public Controller(Scanner scanner,
+                      AccountService accServ,
+                      CustomerService custServ,
+                      TransactionService transServ,
+                      DatabaseService db){
+        this.scanner = scanner;
+        this.accServ = accServ;
+        this.custServ = custServ;
+        this.transServ = transServ;
+        this.db = db;
+    }
 
     public void run(){
         System.out.println("Starting up Banking System");
 
-        // Display Main Menu IF LOGGED IN, if not, display accountSetup
-        mainMenu();
     }
 
-    /*
-     * This will be the main functionalities ONCE LOGGED IN
-     */
-    public void mainMenu(){
-        System.out.println("Please select an option\n" +
-                "1. Check Balance\n" +
-                "2. Transfer Funds\n" +
-                "3. Close Account");
-    }
-
-    /*
-     * This will be the log in options to vreate an account etc
-     */
-    public void accountSetup(){
-        System.out.println("Please select an option\n" +
-                "1. Create Account\n" +
-                "2. Login");
-    }
 }
 //int choice = scanner.nextInt();
