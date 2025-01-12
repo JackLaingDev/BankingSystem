@@ -9,6 +9,7 @@ public class Account {
     private int customerID;
     private int accountType;
     private BigDecimal balance;
+    private boolean isClosed;
 
     // Constructor
     public Account(int accountID, int customerID, int accountType, BigDecimal balance) {
@@ -16,6 +17,7 @@ public class Account {
         this.customerID = customerID;
         this.accountType = accountType;
         this.balance = balance;
+        this.isClosed = false;
     }
 
     // Getters and Setters
@@ -30,5 +32,8 @@ public class Account {
 
     public BigDecimal getBalance(){return balance;}
     public void setBalance(BigDecimal balance){this.balance = balance;}
+
+    public boolean isClosed() {return isClosed;}
+    public void setClosed(boolean closed) {isClosed = closed;}
 
 }
