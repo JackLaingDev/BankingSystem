@@ -51,32 +51,41 @@ public class DatabaseService {
             statement.executeUpdate();
         }
     }
-
-    public void createAccount(Account account) throws SQLException{
-        sql = "INSERT INTO accounts (customerID, accountID, accountType, balance) VALUES (?, ?, ?, ?)";
+    public void deleteCustomer(Customer customer) throws SQLException{
+        sql = "UPDATE customers SET isClosed = ? WHERE customerID = ?";
 
         try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setInt(1, account.getCustomerID());
-            statement.setInt(2, account.getAccountID());
-            statement.setInt(3, account.getAccountType());
-            statement.setBigDecimal(4, account.getBalance());
+            statement.setBoolean(1, true);
+            statement.setInt(2, customer.getCustomerID());
 
             statement.executeUpdate();
         }
     }
+    public Customer getCustomer(int customerID) throws SQLException{
+        sql = "SELECT * FROM customers WHERE customerID = ?";
 
-    public void createTransaction(Transaction transaction) throws SQLException{
-        sql = "INSERT INTO transactions (senderID, recipientID, amount) VALUES (?,?,?)";
+        // Initialise account
+        Customer customer = new Customer(0, "", "", "", "");
 
         try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setInt(1, transaction.getSenderID());
-            statement.setInt(2, transaction.getRecipientID());
-            statement.setBigDecimal(3, transaction.getAmount());
+            statement.setInt(1, customerID);
 
-            statement.executeUpdate();
+            try(ResultSet resultSet = statement.executeQuery()){
+                if(resultSet.next()) {
+                    // Only one result possible as CustomerID is a Unique column (Primary Key)
+                    customer.setCustomerID(resultSet.getInt("customerID"));
+                    customer.setFirstName(resultSet.getString("firstName"));
+                    customer.setLastName(resultSet.getString("lastName"));
+                    customer.setPassword(resultSet.getString("password"));
+                    customer.setUsername(resultSet.getString("username"));
+                }
+                else{
+                    return null;
+                }
+            }
         }
+        return customer;
     }
-
     public List<Account> getCustAccounts(Customer customer) throws SQLException{
         List<Account> accounts = new ArrayList<>();
 
@@ -109,6 +118,62 @@ public class DatabaseService {
         return accounts;
     }
 
+    public void createAccount(Account account) throws SQLException{
+        sql = "INSERT INTO accounts (customerID, accountID, accountType, balance) VALUES (?, ?, ?, ?)";
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setInt(1, account.getCustomerID());
+            statement.setInt(2, account.getAccountID());
+            statement.setInt(3, account.getAccountType());
+            statement.setBigDecimal(4, account.getBalance());
+
+            statement.executeUpdate();
+        }
+    }
+    public void setAccountBalance(Account account, BigDecimal amount) throws SQLException{
+        sql = "UPDATE accounts SET balance = ? WHERE accountID = ?";
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setBigDecimal(1, amount);
+            statement.setInt(2, account.getAccountID());
+
+            statement.executeUpdate();
+        }
+    }
+    public void deleteAccount(Account account) throws SQLException{
+        sql = "UPDATE accounts SET isClosed = ? WHERE accountID = ?";
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setBoolean(1, true);
+            statement.setInt(2, account.getAccountID());
+
+            statement.executeUpdate();
+        }
+    }
+    public Account getAccount(int accountID)throws SQLException{
+        sql = "SELECT * FROM accounts WHERE accountID = ?";
+
+        // Initialise account
+        Account account = new Account(0, 0, 0, BigDecimal.ZERO);
+
+        try(PreparedStatement statement = prepareStatement(sql)){
+            statement.setInt(1, accountID);
+
+            try(ResultSet resultSet = statement.executeQuery()){
+                if(resultSet.next()) {
+                    // Only one result possible as AccountID is a Unique column (Primary Key)
+                    account.setAccountID(resultSet.getInt("accountID"));
+                    account.setCustomerID(resultSet.getInt("customerID"));
+                    account.setAccountType(resultSet.getInt("accountType"));
+                    account.setBalance(resultSet.getBigDecimal("balance"));
+                }
+                else{
+                    return null;
+                }
+            }
+        }
+        return account;
+    }
     public List<Transaction> getAccTransactions(Account account) throws SQLException{
         List<Transaction> transactions = new ArrayList<>();
 
@@ -142,85 +207,13 @@ public class DatabaseService {
         return transactions;
     }
 
-    public void setAccountBalance(Account account, BigDecimal amount) throws SQLException{
-        sql = "UPDATE accounts SET balance = ? WHERE accountID = ?";
+    public void createTransaction(Transaction transaction) throws SQLException{
+        sql = "INSERT INTO transactions (senderID, recipientID, amount) VALUES (?,?,?)";
 
         try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setBigDecimal(1, amount);
-            statement.setInt(2, account.getAccountID());
-
-            statement.executeUpdate();
-        }
-    }
-
-    public Account getAccount(int accountID)throws SQLException{
-        sql = "SELECT * FROM accounts WHERE accountID = ?";
-
-        // Initialise account
-        Account account = new Account(0, 0, 0, BigDecimal.ZERO);
-
-        try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setInt(1, accountID);
-
-            try(ResultSet resultSet = statement.executeQuery()){
-                if(resultSet.next()) {
-                    // Only one result possible as AccountID is a Unique column (Primary Key)
-                    account.setAccountID(resultSet.getInt("accountID"));
-                    account.setCustomerID(resultSet.getInt("customerID"));
-                    account.setAccountType(resultSet.getInt("accountType"));
-                    account.setBalance(resultSet.getBigDecimal("balance"));
-                }
-                else{
-                    return null;
-                }
-            }
-        }
-        return account;
-    }
-
-    public Customer getCustomer(int customerID) throws SQLException{
-        sql = "SELECT * FROM customers WHERE customerID = ?";
-
-        // Initialise account
-        Customer customer = new Customer(0, "", "", "", "");
-
-        try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setInt(1, customerID);
-
-            try(ResultSet resultSet = statement.executeQuery()){
-                if(resultSet.next()) {
-                    // Only one result possible as CustomerID is a Unique column (Primary Key)
-                    customer.setCustomerID(resultSet.getInt("customerID"));
-                    customer.setFirstName(resultSet.getString("firstName"));
-                    customer.setLastName(resultSet.getString("lastName"));
-                    customer.setPassword(resultSet.getString("password"));
-                    customer.setUsername(resultSet.getString("username"));
-                }
-                else{
-                    return null;
-                }
-            }
-        }
-        return customer;
-    }
-
-    public void deleteAccount(Account account) throws SQLException{
-        sql = "UPDATE accounts SET isClosed = ? WHERE accountID = ?";
-
-        try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setBoolean(1, true);
-            statement.setInt(2, account.getAccountID());
-
-            statement.executeUpdate();
-        }
-    }
-
-    public void deleteCustomer(Customer customer) throws SQLException{
-        sql = "UPDATE customers SET isClosed = ? WHERE customerID = ?";
-
-        try(PreparedStatement statement = prepareStatement(sql)){
-            statement.setBoolean(1, true);
-            statement.setInt(2, customer.getCustomerID());
+            statement.setInt(1, transaction.getSenderID());
+            statement.setInt(2, transaction.getRecipientID());
+            statement.setBigDecimal(3, transaction.getAmount());
 
             statement.executeUpdate();
         }
