@@ -45,28 +45,35 @@ public class Controller {
 
         // Initialise variables
         this.running = true;
+
+        System.out.println("Starting up Banking System");
+        while(running){
+
+            // Have it so if a function fails (username taken etc.) it goes back to accountSetup
+            accountSetup();
+
+        }
+    }
+
+    public void accountSetup() throws SQLException {
         String userName = "";
         String password = "";
         String firstName = "";
         String lastName = "";
 
-        System.out.println("Starting up Banking System");
-        while(running){
-
-            switch (accountSetup.displayMenu()){
-                case 1:
-                    userName = accountSetup.getUsername();
-                    password = accountSetup.getPassword();
-                    custServ.login(userName, password);
-                    break;
-                case 2:
-                    userName = accountSetup.getNewUsername();
-                    password = accountSetup.getNewPassword();
-                    firstName = accountSetup.getFirstName();
-                    lastName = accountSetup.getLastName();
-                    custServ.register(userName, password, firstName, lastName);
-                    break;
-            }
+        switch (accountSetup.displayMenu()){
+            case 1:
+                userName = accountSetup.getUsername();
+                password = accountSetup.getPassword();
+                custServ.login(userName, password);
+                break;
+            case 2:
+                userName = accountSetup.getNewUsername();
+                password = accountSetup.getNewPassword();
+                firstName = accountSetup.getFirstName();
+                lastName = accountSetup.getLastName();
+                custServ.register(userName, password, firstName, lastName);
+                break;
         }
     }
 
