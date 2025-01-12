@@ -7,12 +7,22 @@ import services.CustomerService;
 import services.TransactionService;
 import services.DatabaseService;
 
+import views.accountSetup;
+
 public class Controller {
+
+    // Attributes
     private Scanner scanner;
+    private boolean running;
+
+    // Services
     private AccountService accServ;
     private CustomerService custServ;
     private TransactionService transServ;
     private DatabaseService db;
+
+    // Views
+    private accountSetup accountSetup;
 
     public Controller(Scanner scanner,
                       AccountService accServ,
@@ -27,8 +37,14 @@ public class Controller {
     }
 
     public void run(){
-        System.out.println("Starting up Banking System");
+        // 0 = account set up
+        // 1 = main menu
 
+
+        System.out.println("Starting up Banking System");
+        while(true){
+
+        }
     }
 
 }
