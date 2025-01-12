@@ -28,7 +28,6 @@ public class DatabaseService {
 
             // Establish the connection
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            System.out.println("Connection to DB established!");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace(); // Handle exceptions appropriately in a real application
             throw new RuntimeException("Error connecting to database", e); // Or rethrow as a custom exception
@@ -179,7 +178,7 @@ public class DatabaseService {
         return account;
     }
 
-    public Customer getCustomer(int customerID)throws SQLException{
+    public Customer getCustomer(int customerID) throws SQLException{
         sql = "SELECT * FROM customers WHERE customerID = ?";
 
         // Initialise account
