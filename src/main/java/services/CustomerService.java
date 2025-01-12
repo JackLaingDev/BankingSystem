@@ -13,11 +13,12 @@ public class CustomerService {
 
     // Attributes
     private Customer customer;
-    private DatabaseService db = new DatabaseService();
+    private DatabaseService db;
 
     // Constructor
-    public CustomerService(Customer customer){
+    public CustomerService(Customer customer, DatabaseService db){
         this.customer = customer;
+        this.db = db;
     }
 
     // Getters and Setters

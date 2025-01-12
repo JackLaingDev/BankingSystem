@@ -14,11 +14,12 @@ public class AccountService{
 
     // Attributes
     private Account account;
-    DatabaseService db = new DatabaseService();
+    DatabaseService db;
 
     // Constructor
-    public AccountService(Account account) {
+    public AccountService(Account account, DatabaseService db) {
         this.account = account;
+        this.db = db;
     }
 
     // Getters and Setters

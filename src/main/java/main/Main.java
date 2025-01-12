@@ -24,10 +24,10 @@ public class Main {
         Transaction transaction = new Transaction(0,0,0,BigDecimal.ZERO);
 
         // Initialise services
-        CustomerService custServ = new CustomerService(customer);
-        AccountService accServ = new AccountService(account);
-        TransactionService transServ = new TransactionService(transaction);
         DatabaseService db = new DatabaseService();
+        CustomerService custServ = new CustomerService(customer, db);
+        AccountService accServ = new AccountService(account, db);
+        TransactionService transServ = new TransactionService(transaction, db);
 
         // Initialise scanner
         Scanner scanner = new Scanner(System.in);

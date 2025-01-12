@@ -10,11 +10,12 @@ public class TransactionService {
 
     // Attributes
     private Transaction transaction;
-    private DatabaseService db = new DatabaseService();
+    private DatabaseService db;
 
     // Constructor
-    public TransactionService(Transaction transaction){
+    public TransactionService(Transaction transaction, DatabaseService db){
         this.transaction = transaction;
+        this.db = db;
     }
 
     // Getters and Setters
