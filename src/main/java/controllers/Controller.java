@@ -64,7 +64,7 @@ public class Controller {
                     password = accountSetup.getNewPassword();
                     firstName = accountSetup.getFirstName();
                     lastName = accountSetup.getLastName();
-                    //custServ.register(userName, password, firstName, lastName);
+                    custServ.register(userName, password, firstName, lastName);
                     break;
             }
         }
