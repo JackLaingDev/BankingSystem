@@ -41,12 +41,31 @@ public class Controller {
     public void run(){
         // 0 = account set up
         // 1 = main menu
+
+        // Initialise variables
         this.running = true;
+        String userName = "";
+        String password = "";
+        String firstName = "";
+        String lastName = "";
 
         System.out.println("Starting up Banking System");
         while(running){
 
-            accountSetup.displayMenu();
+            switch (accountSetup.displayMenu()){
+                case 1:
+                    userName = accountSetup.getUsername();
+                    password = accountSetup.getPassword();
+                    //custServ.login(userName, password);
+                    break;
+                case 2:
+                    userName = accountSetup.getNewUsername();
+                    password = accountSetup.getNewPassword();
+                    firstName = accountSetup.getFirstName();
+                    lastName = accountSetup.getLastName();
+                    //custServ.register(userName, password, firstName, lastName);
+                    break;
+            }
         }
     }
 
