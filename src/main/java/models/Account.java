@@ -33,7 +33,7 @@ public class Account {
     public BigDecimal getBalance(){return balance;}
     public void setBalance(BigDecimal balance){this.balance = balance;}
 
-    public boolean isClosed() {return isClosed;}
+    public boolean getIsClosed() {return isClosed;}
     public void setClosed(boolean closed) {isClosed = closed;}
 
 }
