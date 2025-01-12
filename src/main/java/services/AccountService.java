@@ -24,17 +24,17 @@ public class AccountService{
 
     // Getters and Setters
     public Account getAccount(){return account;}
-    public List<Transaction> getTransactions() throws SQLException{return db.getAccTransactions(account);}
+    public List<Transaction> getTransactions() throws SQLException{return this.db.getAccTransactions(this.account);}
 
     public void setAccount(Account account){this.account = account;}
 
     // Methods
     public void createAccount() throws SQLException {
-        db.createAccount(account);
+        db.createAccount(this.account);
     }
 
     public void closeAccount() throws SQLException {
-        db.deleteAccount(account);
+        db.deleteAccount(this.account);
     }
 
     public void makeTransaction(Transaction transaction) throws SQLException {
@@ -44,12 +44,12 @@ public class AccountService{
 
         BigDecimal amount = transaction.getAmount();
 
-        BigDecimal newAmountSender = account.getBalance().subtract(amount);
+        BigDecimal newAmountSender = this.account.getBalance().subtract(amount);
         BigDecimal newAmountRecipient = recipientAccount.getBalance().add(amount);
 
         // Check if sender account has enough money, and that the amount sent is valid
         if(newAmountSender.compareTo(BigDecimal.ZERO) >= 0 && amount.compareTo(BigDecimal.ZERO) >= 0) {
-            db.setAccountBalance(account, newAmountSender);
+            db.setAccountBalance(this.account, newAmountSender);
             db.setAccountBalance(recipientAccount, newAmountRecipient);
         }
     }
