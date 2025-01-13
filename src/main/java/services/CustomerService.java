@@ -14,7 +14,7 @@ public class CustomerService {
 
     // Attributes
     private Customer customer;
-    private DatabaseService db;
+    private final DatabaseService db;
 
     // Constructor
     public CustomerService(Customer customer, DatabaseService db){

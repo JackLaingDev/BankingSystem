@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class customerSetup {
 
-    private Scanner scanner;
-    private String mainMenu = "Please Enter An Option\n" +
+    private final Scanner scanner;
+    private final String mainMenu = "Please Enter An Option\n" +
             "1. Login\n" +
             "2. Create Account";
 

@@ -10,7 +10,7 @@ public class TransactionService {
 
     // Attributes
     private Transaction transaction;
-    private DatabaseService db;
+    private final DatabaseService db;
 
     // Constructor
     public TransactionService(Transaction transaction, DatabaseService db){

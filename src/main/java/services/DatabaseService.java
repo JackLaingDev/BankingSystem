@@ -17,7 +17,7 @@ public class DatabaseService {
     private static final String DB_PASSWORD = "jacklaing"; // Replace with your DB password
 
     // Attributes
-    private Connection connection;
+    private final Connection connection;
     private String sql;
 
     // Constructor

@@ -19,19 +19,18 @@ import views.accountMenu;
 public class Controller {
 
     // Attributes
-    private Scanner scanner;
-    private boolean running;
+    private final Scanner scanner;
 
     // Services
-    private AccountService accServ;
-    private CustomerService custServ;
-    private TransactionService transServ;
-    private DatabaseService db;
+    private final AccountService accServ;
+    private final CustomerService custServ;
+    private final TransactionService transServ;
+    private final DatabaseService db;
 
     // Views
-    private customerSetup customerSetup;
-    private customerMenu customerMenu;
-    private accountMenu accountMenu;
+    private final customerSetup customerSetup;
+    private final customerMenu customerMenu;
+    private final accountMenu accountMenu;
 
     public Controller(Scanner scanner,
                       AccountService accServ,
@@ -52,15 +51,8 @@ public class Controller {
     }
 
     public void run() throws SQLException {
-        // 0 = account set up
-        // 1 = main menu
-
-        // Initialise variables
-        this.running = true;
 
         System.out.println("Starting up Banking System");
-
-        // Have it so if a function fails (username taken etc.) it goes back to customerSetup
         customerSetup();
 
     }

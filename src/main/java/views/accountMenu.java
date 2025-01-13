@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class accountMenu {
 
-    private Scanner scanner;
-    private String mainMenu = "Please Enter An Option\n" +
+    private final Scanner scanner;
+    private final String mainMenu = "Please Enter An Option\n" +
             "1. Check Balance\n" +
             "2. Check Transactions\n" +
             "3. Make Transaction\n" +

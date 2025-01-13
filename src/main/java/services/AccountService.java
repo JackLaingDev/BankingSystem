@@ -15,7 +15,7 @@ public class AccountService{
 
     // Attributes
     private Account account;
-    private DatabaseService db;
+    private final DatabaseService db;
     private TransactionService transServ;
 
     // Constructor
