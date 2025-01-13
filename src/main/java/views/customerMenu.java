@@ -24,10 +24,14 @@ public class customerMenu {
         return choice;
     }
 
-    public void displayAccounts(List<Account> accounts){
+    public int displayAccounts(List<Account> accounts){
+        System.out.println("Please Select An Account:\n");
         for(int i = 0; i < accounts.size(); i++){
             System.out.printf("%d. Account ID: %d\n", i+1, accounts.get(i).getAccountID());
         }
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        return choice;
     }
 
     public void accountCloseSuccess(){
