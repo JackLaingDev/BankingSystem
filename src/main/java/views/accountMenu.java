@@ -36,9 +36,10 @@ public class accountMenu {
         DecimalFormat df = new DecimalFormat("#,###.00");
 
         for(int i = 0; i < transactions.size(); i++){
-            System.out.printf("%d. Transaction ID: %d, Recipient ID: %d, Amount: £%.2f%n",
+            System.out.printf("%d. Transaction ID: %d, Sender ID: %d, Recipient ID: %d, Amount: £%.2f%n",
                     i+1,
                     transactions.get(i).getTransactionID(),
+                    transactions.get(i).getSenderID(),
                     transactions.get(i).getRecipientID(),
                     transactions.get(i).getAmount());
         }

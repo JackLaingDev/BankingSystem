@@ -1,10 +1,12 @@
 package controllers;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
 import models.Account;
+import models.Transaction;
 import services.AccountService;
 import services.CustomerService;
 import services.TransactionService;
@@ -116,6 +118,7 @@ public class Controller {
         switch (customerMenu.displayMenu()){
             case 1:
                 chooseAccount();
+                accountMenu();
                 break;
             case 2:
                 custServ.closeCustomer();
@@ -130,6 +133,33 @@ public class Controller {
         List<Account> accounts = custServ.getAccounts();
         int choice = customerMenu.displayAccounts(custServ.getAccounts());
         accServ.setAccount(accounts.get(choice - 1));
+    }
+
+    private void accountMenu() throws SQLException {
+
+        switch (accountMenu.displayMenu()){
+            case 1:
+                displayBalance();
+                break;
+            case 2:
+                displayTransactions();
+                break;
+            case 3:
+                accServ.closeAccount();
+                break;
+        }
+    }
+
+    private void displayBalance() throws SQLException {
+        BigDecimal balance = accServ.getAccount().getBalance();
+
+        accountMenu.displayBalance(balance);
+    }
+
+    private void displayTransactions() throws SQLException {
+
+        List<Transaction> transactions = accServ.getTransactions();
+        accountMenu.displayTransactions(transactions);
     }
 
 }
