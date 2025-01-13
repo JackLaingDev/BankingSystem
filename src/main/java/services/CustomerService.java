@@ -52,7 +52,6 @@ public class CustomerService {
         }
         else if (custPassword.equals(password)) {
             this.customer = customer;
-            System.out.println("Customer Successfully Logged In");
             return 0;
         }
         return -1;
