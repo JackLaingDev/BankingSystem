@@ -1,8 +1,10 @@
 package controllers;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
+import models.Account;
 import services.AccountService;
 import services.CustomerService;
 import services.TransactionService;
@@ -121,7 +123,10 @@ public class Controller {
     }
 
     private void chooseAccount() throws SQLException {
-        customerMenu.displayAccounts(custServ.getAccounts());
+
+        List<Account> accounts = custServ.getAccounts();
+        int choice = customerMenu.displayAccounts(custServ.getAccounts());
+        accServ.setAccount(accounts.get(choice - 1));
     }
 
 }
