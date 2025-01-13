@@ -39,7 +39,7 @@ public class DatabaseService {
         return connection.prepareStatement(sql);
     }
 
-    public void createCustomer(Customer customer) throws SQLException{
+    public void createCustomer(Customer customer) throws SQLException, SQLIntegrityConstraintViolationException{
         sql = "INSERT INTO customers (firstName, lastName, username, password) VALUES (?,?,?,?)";
 
         try(PreparedStatement statement = prepareStatement(sql)){
@@ -49,8 +49,6 @@ public class DatabaseService {
             statement.setString(4, customer.getPassword());
 
             statement.executeUpdate();
-        }catch (SQLIntegrityConstraintViolationException e) {
-            System.err.println("Username already exists. Please choose a different username.");
         }
     }
     public void deleteCustomer(Customer customer) throws SQLException{

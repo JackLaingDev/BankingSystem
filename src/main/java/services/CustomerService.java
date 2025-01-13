@@ -37,26 +37,35 @@ public class CustomerService {
         this.db.deleteCustomer(this.customer);
     }
 
-    public void login(String userName, String password) throws SQLException {
+    public int login(String userName, String password) throws SQLException {
 
         Customer customer = this.db.getCustomer(userName);
         String custPassword = customer.getPassword();
 
         if(customer == null){
             System.out.println("No Customer With This Username exists");
+            return -1;
         }
         else if (customer.getIsClosed()) {
             System.out.println("This Customer Account Is Closed");
+            return -1;
         }
         else if (custPassword.equals(password)) {
             this.customer = customer;
             System.out.println("Customer Successfully Logged In");
+            return 0;
         }
+        return -1;
     }
 
-    public void register(String userName, String password, String firstName, String lastName) throws SQLException{
+    public int register(String userName, String password, String firstName, String lastName) throws SQLException{
         Customer customer = new Customer(0, firstName, lastName, password, userName);
 
-        db.createCustomer(customer);
+        try{
+            db.createCustomer(customer);
+            return 0;
+        } catch (SQLIntegrityConstraintViolationException e) {
+            return -1;
+        }
     }
 }

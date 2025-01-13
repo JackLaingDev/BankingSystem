@@ -51,7 +51,7 @@ public class Controller {
 
             // Have it so if a function fails (username taken etc.) it goes back to accountSetup
             accountSetup();
-
+            System.out.println("test");
         }
     }
 
@@ -65,14 +65,22 @@ public class Controller {
             case 1:
                 userName = accountSetup.getUsername();
                 password = accountSetup.getPassword();
-                custServ.login(userName, password);
+
+                // If login fails, retry accountSetup
+                if(custServ.login(userName, password) == -1){
+                    accountSetup();
+                }
                 break;
             case 2:
                 userName = accountSetup.getNewUsername();
                 password = accountSetup.getNewPassword();
                 firstName = accountSetup.getFirstName();
                 lastName = accountSetup.getLastName();
-                custServ.register(userName, password, firstName, lastName);
+
+                // If registration fails, retry accountSetup
+                if (custServ.register(userName, password, firstName, lastName) == -1){
+                    accountSetup();
+                }
                 break;
         }
     }
