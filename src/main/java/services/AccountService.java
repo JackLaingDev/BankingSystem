@@ -2,6 +2,7 @@ package services;
 
 import models.Transaction;
 import services.DatabaseService;
+import services.TransactionService;
 
 import models.Account;
 
@@ -14,7 +15,8 @@ public class AccountService{
 
     // Attributes
     private Account account;
-    DatabaseService db;
+    private DatabaseService db;
+    private TransactionService transServ;
 
     // Constructor
     public AccountService(Account account, DatabaseService db) {
@@ -27,6 +29,7 @@ public class AccountService{
     public List<Transaction> getTransactions() throws SQLException{return this.db.getAccTransactions(this.account);}
 
     public void setAccount(Account account){this.account = account;}
+    public void setTransServ(TransactionService transServ){this.transServ = transServ;}
 
     // Methods
     public void createAccount() throws SQLException {
@@ -39,6 +42,7 @@ public class AccountService{
 
     public void makeTransaction(Transaction transaction) throws SQLException {
         DatabaseService db = new DatabaseService();
+        transServ.setTransaction(transaction);
 
         Account recipientAccount = db.getAccount(transaction.getRecipientID());
 
@@ -51,6 +55,7 @@ public class AccountService{
         if(newAmountSender.compareTo(BigDecimal.ZERO) >= 0 && amount.compareTo(BigDecimal.ZERO) >= 0) {
             db.setAccountBalance(this.account, newAmountSender);
             db.setAccountBalance(recipientAccount, newAmountRecipient);
+            transServ.createTransaction();
         }
     }
 

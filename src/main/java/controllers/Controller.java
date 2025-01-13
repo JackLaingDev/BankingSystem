@@ -42,6 +42,8 @@ public class Controller {
         this.accServ = accServ;
         this.custServ = custServ;
         this.transServ = transServ;
+        this.accServ.setTransServ(this.transServ);
+
         this.db = db;
 
         this.customerSetup = new customerSetup(scanner);
@@ -145,6 +147,9 @@ public class Controller {
                 displayTransactions();
                 break;
             case 3:
+                makeTransaction();
+                break;
+            case 4:
                 accServ.closeAccount();
                 break;
         }
@@ -160,6 +165,16 @@ public class Controller {
 
         List<Transaction> transactions = accServ.getTransactions();
         accountMenu.displayTransactions(transactions);
+    }
+
+    private void makeTransaction() throws SQLException{
+        int recipientID = accountMenu.getRecipientID();
+        int senderID = accServ.getAccount().getAccountID();
+        BigDecimal amount = accountMenu.getAmount();
+
+        Transaction transaction = new Transaction(0, senderID,recipientID,amount);
+
+        accServ.makeTransaction(transaction);
     }
 
 }

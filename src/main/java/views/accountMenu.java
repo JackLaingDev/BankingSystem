@@ -13,7 +13,8 @@ public class accountMenu {
     private String mainMenu = "Please Enter An Option\n" +
             "1. Check Balance\n" +
             "2. Check Transactions\n" +
-            "3. Close Account";
+            "3. Make Transaction\n" +
+            "4. Close Account";
 
     public accountMenu(Scanner scanner){
         this.scanner = scanner;
@@ -43,6 +44,20 @@ public class accountMenu {
                     transactions.get(i).getRecipientID(),
                     transactions.get(i).getAmount());
         }
+    }
+
+    public int getRecipientID(){
+        System.out.println("Please Enter The Account ID You Want To Transfer To:\n");
+        int recipientID = scanner.nextInt();
+        scanner.nextLine();
+        return recipientID;
+    }
+
+    public BigDecimal getAmount(){
+        System.out.println("Please Enter The Amount You Want To Transfer:\n");
+        BigDecimal amount = scanner.nextBigDecimal();
+        scanner.nextLine();
+        return amount;
     }
 
 }
