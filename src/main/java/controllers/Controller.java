@@ -12,6 +12,7 @@ import services.DatabaseService;
 
 import views.customerSetup;
 import views.customerMenu;
+import views.accountMenu;
 
 public class Controller {
 
@@ -28,6 +29,7 @@ public class Controller {
     // Views
     private customerSetup customerSetup;
     private customerMenu customerMenu;
+    private accountMenu accountMenu;
 
     public Controller(Scanner scanner,
                       AccountService accServ,
@@ -42,6 +44,7 @@ public class Controller {
 
         this.customerSetup = new customerSetup(scanner);
         this.customerMenu = new customerMenu(scanner);
+        this.accountMenu = new accountMenu(scanner);
     }
 
     public void run() throws SQLException {
