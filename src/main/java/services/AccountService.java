@@ -39,7 +39,7 @@ public class AccountService{
         db.deleteAccount(this.account);
     }
     public void makeTransaction(Transaction transaction) throws SQLException {
-        DatabaseService db = new DatabaseService();
+
         transServ.setTransaction(transaction);
 
         Account recipientAccount = db.getAccount(transaction.getRecipientID());
