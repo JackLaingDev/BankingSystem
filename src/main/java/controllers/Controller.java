@@ -68,6 +68,7 @@ public class Controller {
 
                 // If login fails, retry accountSetup
                 if(custServ.login(userName, password) == -1){
+                    accountSetup.loginFailure();
                     accountSetup();
                 }
                 break;
@@ -79,6 +80,7 @@ public class Controller {
 
                 // If registration fails, retry accountSetup
                 if (custServ.register(userName, password, firstName, lastName) == -1){
+                    accountSetup.registrationFailure();
                     accountSetup();
                 }
                 break;
