@@ -60,4 +60,8 @@ public class accountMenu {
         return amount;
     }
 
+    public void transactionSuccess(){
+        System.out.println("Transaction Successful");
+    }
+
 }

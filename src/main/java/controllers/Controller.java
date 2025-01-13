@@ -175,6 +175,7 @@ public class Controller {
         Transaction transaction = new Transaction(0, senderID,recipientID,amount);
 
         accServ.makeTransaction(transaction);
+        accountMenu.transactionSuccess();
     }
 
 }

@@ -29,7 +29,6 @@ public class Main {
         TransactionService transServ = new TransactionService(transaction, db);
         AccountService accServ = new AccountService(account, db);
 
-
         // Initialise scanner
         Scanner scanner = new Scanner(System.in);
 
