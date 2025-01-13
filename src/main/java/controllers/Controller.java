@@ -153,11 +153,13 @@ public class Controller {
         BigDecimal balance = accServ.getAccount().getBalance();
 
         accountMenu.displayBalance(balance);
+        accountMenu();
     }
     private void displayTransactions() throws SQLException {
 
         List<Transaction> transactions = accServ.getTransactions();
         accountMenu.displayTransactions(transactions);
+        accountMenu();
     }
     private void makeTransaction() throws SQLException{
         int recipientID = accountMenu.getRecipientID();
@@ -168,6 +170,7 @@ public class Controller {
 
         accServ.makeTransaction(transaction);
         accountMenu.transactionSuccess();
+        accountMenu();
     }
 
 }
