@@ -50,4 +50,12 @@ public class accountSetup {
         System.out.println("Please Enter Your Last Name:\n");
         return scanner.nextLine();
     }
+
+    public void loginFailure(){
+        System.out.println("Login Failed, Please Try Again");
+    }
+
+    public void registrationFailure(){
+        System.out.println("Registration Failed, Please Try Again");
+    }
 }
