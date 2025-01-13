@@ -58,4 +58,13 @@ public class accountSetup {
     public void registrationFailure(){
         System.out.println("Registration Failed, Please Try Again");
     }
+
+    public void loginSuccess(){
+        System.out.println("Customer Logged in!");
+    }
+
+    public void registrationSuccess(){
+        System.out.println("Registration Successful");
+    }
+
 }

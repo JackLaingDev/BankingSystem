@@ -76,6 +76,8 @@ public class Controller {
             accountSetup();
         }
 
+        accountSetup.loginSuccess();
+
         // Customer menu
 
     }
@@ -92,8 +94,11 @@ public class Controller {
             accountSetup();
         }
 
+        accountSetup.registrationSuccess();
+
         // If successful, login
         custServ.login(userName, password);
+        accountSetup.loginSuccess();
 
         // Customer menu
     }
