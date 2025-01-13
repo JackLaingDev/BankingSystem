@@ -35,11 +35,9 @@ public class AccountService{
     public void createAccount() throws SQLException {
         db.createAccount(this.account);
     }
-
     public void closeAccount() throws SQLException {
         db.deleteAccount(this.account);
     }
-
     public void makeTransaction(Transaction transaction) throws SQLException {
         DatabaseService db = new DatabaseService();
         transServ.setTransaction(transaction);

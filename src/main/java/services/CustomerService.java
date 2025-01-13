@@ -32,11 +32,9 @@ public class CustomerService {
     public void createCustomer() throws SQLException {
         db.createCustomer(customer);
     }
-
     public void closeCustomer() throws SQLException{
         this.db.deleteCustomer(this.customer);
     }
-
     public int login(String userName, String password) throws SQLException {
 
         Customer customer = this.db.getCustomer(userName);
@@ -56,7 +54,6 @@ public class CustomerService {
         }
         return -1;
     }
-
     public int register(String userName, String password, String firstName, String lastName) throws SQLException{
         Customer customer = new Customer(0, firstName, lastName, password, userName);
 

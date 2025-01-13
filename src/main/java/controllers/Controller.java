@@ -76,7 +76,6 @@ public class Controller {
                 break;
         }
     }
-
     private void login() throws SQLException {
         String userName = customerSetup.getUsername();
         String password = customerSetup.getPassword();
@@ -92,7 +91,6 @@ public class Controller {
         // Customer menu
         customerMenu();
     }
-
     private void register() throws SQLException {
         String userName = customerSetup.getNewUsername();
         String password = customerSetup.getNewPassword();
@@ -114,7 +112,6 @@ public class Controller {
         // Customer menu
         customerMenu();
     }
-
     private void customerMenu() throws SQLException {
 
         switch (customerMenu.displayMenu()){
@@ -129,14 +126,12 @@ public class Controller {
                 break;
         }
     }
-
     private void chooseAccount() throws SQLException {
 
         List<Account> accounts = custServ.getAccounts();
         int choice = customerMenu.displayAccounts(custServ.getAccounts());
         accServ.setAccount(accounts.get(choice - 1));
     }
-
     private void accountMenu() throws SQLException {
 
         switch (accountMenu.displayMenu()){
@@ -154,19 +149,16 @@ public class Controller {
                 break;
         }
     }
-
     private void displayBalance() throws SQLException {
         BigDecimal balance = accServ.getAccount().getBalance();
 
         accountMenu.displayBalance(balance);
     }
-
     private void displayTransactions() throws SQLException {
 
         List<Transaction> transactions = accServ.getTransactions();
         accountMenu.displayTransactions(transactions);
     }
-
     private void makeTransaction() throws SQLException{
         int recipientID = accountMenu.getRecipientID();
         int senderID = accServ.getAccount().getAccountID();
@@ -179,4 +171,3 @@ public class Controller {
     }
 
 }
-//int choice = scanner.nextInt();

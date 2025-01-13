@@ -23,8 +23,6 @@ public class TransactionService {
     public void setTransaction(Transaction transaction){this.transaction = transaction;}
 
     // Methods
-    public void createTransaction() throws SQLException {
-        db.createTransaction(transaction);
-    }
+    public void createTransaction() throws SQLException {db.createTransaction(transaction);}
 
 }
