@@ -56,7 +56,7 @@ public class Controller {
 
     }
 
-    public void accountSetup() throws SQLException {
+    private void accountSetup() throws SQLException {
 
         switch (accountSetup.displayMenu()){
             case 1:
@@ -68,7 +68,7 @@ public class Controller {
         }
     }
 
-    public void login() throws SQLException {
+    private void login() throws SQLException {
         String userName = accountSetup.getUsername();
         String password = accountSetup.getPassword();
 
@@ -84,7 +84,7 @@ public class Controller {
         customerMenu();
     }
 
-    public void register() throws SQLException {
+    private void register() throws SQLException {
         String userName = accountSetup.getNewUsername();
         String password = accountSetup.getNewPassword();
         String firstName = accountSetup.getFirstName();
@@ -106,7 +106,7 @@ public class Controller {
         customerMenu();
     }
 
-    public void customerMenu() throws SQLException {
+    private void customerMenu() throws SQLException {
 
         switch (customerMenu.displayMenu()){
             case 1:
@@ -120,7 +120,7 @@ public class Controller {
         }
     }
 
-    public void chooseAccount() throws SQLException {
+    private void chooseAccount() throws SQLException {
         customerMenu.displayAccounts(custServ.getAccounts());
     }
 
