@@ -51,40 +51,51 @@ public class Controller {
 
             // Have it so if a function fails (username taken etc.) it goes back to accountSetup
             accountSetup();
-            System.out.println("test");
         }
     }
 
     public void accountSetup() throws SQLException {
-        String userName = "";
-        String password = "";
-        String firstName = "";
-        String lastName = "";
 
         switch (accountSetup.displayMenu()){
             case 1:
-                userName = accountSetup.getUsername();
-                password = accountSetup.getPassword();
-
-                // If login fails, retry accountSetup
-                if(custServ.login(userName, password) == -1){
-                    accountSetup.loginFailure();
-                    accountSetup();
-                }
+                login();
                 break;
             case 2:
-                userName = accountSetup.getNewUsername();
-                password = accountSetup.getNewPassword();
-                firstName = accountSetup.getFirstName();
-                lastName = accountSetup.getLastName();
-
-                // If registration fails, retry accountSetup
-                if (custServ.register(userName, password, firstName, lastName) == -1){
-                    accountSetup.registrationFailure();
-                    accountSetup();
-                }
+                register();
                 break;
         }
+    }
+
+    public void login() throws SQLException {
+        String userName = accountSetup.getUsername();
+        String password = accountSetup.getPassword();
+
+        // If login fails, retry accountSetup
+        if(custServ.login(userName, password) == -1){
+            accountSetup.loginFailure();
+            accountSetup();
+        }
+
+        // Customer menu
+
+    }
+
+    public void register() throws SQLException {
+        String userName = accountSetup.getNewUsername();
+        String password = accountSetup.getNewPassword();
+        String firstName = accountSetup.getFirstName();
+        String lastName = accountSetup.getLastName();
+
+        // If registration fails, retry accountSetup
+        if (custServ.register(userName, password, firstName, lastName) == -1){
+            accountSetup.registrationFailure();
+            accountSetup();
+        }
+
+        // If successful, login
+        custServ.login(userName, password);
+
+        // Customer menu
     }
 
 }
