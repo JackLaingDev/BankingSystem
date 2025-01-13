@@ -9,6 +9,7 @@ import services.TransactionService;
 import services.DatabaseService;
 
 import views.accountSetup;
+import views.customerMenu;
 
 public class Controller {
 
@@ -24,6 +25,7 @@ public class Controller {
 
     // Views
     private accountSetup accountSetup;
+    private customerMenu customerMenu;
 
     public Controller(Scanner scanner,
                       AccountService accServ,
@@ -37,6 +39,7 @@ public class Controller {
         this.db = db;
 
         this.accountSetup = new accountSetup(scanner);
+        this.customerMenu = new customerMenu(scanner);
     }
 
     public void run() throws SQLException {
@@ -47,11 +50,10 @@ public class Controller {
         this.running = true;
 
         System.out.println("Starting up Banking System");
-        while(running){
 
-            // Have it so if a function fails (username taken etc.) it goes back to accountSetup
-            accountSetup();
-        }
+        // Have it so if a function fails (username taken etc.) it goes back to accountSetup
+        accountSetup();
+
     }
 
     public void accountSetup() throws SQLException {
@@ -79,7 +81,7 @@ public class Controller {
         accountSetup.loginSuccess();
 
         // Customer menu
-
+        customerMenu();
     }
 
     public void register() throws SQLException {
@@ -101,6 +103,25 @@ public class Controller {
         accountSetup.loginSuccess();
 
         // Customer menu
+        customerMenu();
+    }
+
+    public void customerMenu() throws SQLException {
+
+        switch (customerMenu.displayMenu()){
+            case 1:
+                chooseAccount();
+                break;
+            case 2:
+                custServ.closeCustomer();
+                customerMenu.accountCloseSuccess();
+                accountSetup();
+                break;
+        }
+    }
+
+    public void chooseAccount() throws SQLException {
+        customerMenu.displayAccounts(custServ.getAccounts());
     }
 
 }
