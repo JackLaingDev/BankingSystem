@@ -10,7 +10,7 @@ import services.CustomerService;
 import services.TransactionService;
 import services.DatabaseService;
 
-import views.accountSetup;
+import views.customerSetup;
 import views.customerMenu;
 
 public class Controller {
@@ -26,7 +26,7 @@ public class Controller {
     private DatabaseService db;
 
     // Views
-    private accountSetup accountSetup;
+    private customerSetup customerSetup;
     private customerMenu customerMenu;
 
     public Controller(Scanner scanner,
@@ -40,7 +40,7 @@ public class Controller {
         this.transServ = transServ;
         this.db = db;
 
-        this.accountSetup = new accountSetup(scanner);
+        this.customerSetup = new customerSetup(scanner);
         this.customerMenu = new customerMenu(scanner);
     }
 
@@ -53,14 +53,14 @@ public class Controller {
 
         System.out.println("Starting up Banking System");
 
-        // Have it so if a function fails (username taken etc.) it goes back to accountSetup
-        accountSetup();
+        // Have it so if a function fails (username taken etc.) it goes back to customerSetup
+        customerSetup();
 
     }
 
-    private void accountSetup() throws SQLException {
+    private void customerSetup() throws SQLException {
 
-        switch (accountSetup.displayMenu()){
+        switch (customerSetup.displayMenu()){
             case 1:
                 login();
                 break;
@@ -71,38 +71,38 @@ public class Controller {
     }
 
     private void login() throws SQLException {
-        String userName = accountSetup.getUsername();
-        String password = accountSetup.getPassword();
+        String userName = customerSetup.getUsername();
+        String password = customerSetup.getPassword();
 
-        // If login fails, retry accountSetup
+        // If login fails, retry customerSetup
         if(custServ.login(userName, password) == -1){
-            accountSetup.loginFailure();
-            accountSetup();
+            customerSetup.loginFailure();
+            customerSetup();
         }
 
-        accountSetup.loginSuccess();
+        customerSetup.loginSuccess();
 
         // Customer menu
         customerMenu();
     }
 
     private void register() throws SQLException {
-        String userName = accountSetup.getNewUsername();
-        String password = accountSetup.getNewPassword();
-        String firstName = accountSetup.getFirstName();
-        String lastName = accountSetup.getLastName();
+        String userName = customerSetup.getNewUsername();
+        String password = customerSetup.getNewPassword();
+        String firstName = customerSetup.getFirstName();
+        String lastName = customerSetup.getLastName();
 
-        // If registration fails, retry accountSetup
+        // If registration fails, retry customerSetup
         if (custServ.register(userName, password, firstName, lastName) == -1){
-            accountSetup.registrationFailure();
-            accountSetup();
+            customerSetup.registrationFailure();
+            customerSetup();
         }
 
-        accountSetup.registrationSuccess();
+        customerSetup.registrationSuccess();
 
         // If successful, login
         custServ.login(userName, password);
-        accountSetup.loginSuccess();
+        customerSetup.loginSuccess();
 
         // Customer menu
         customerMenu();
@@ -117,7 +117,7 @@ public class Controller {
             case 2:
                 custServ.closeCustomer();
                 customerMenu.accountCloseSuccess();
-                accountSetup();
+                customerSetup();
                 break;
         }
     }

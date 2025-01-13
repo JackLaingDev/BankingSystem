@@ -2,14 +2,14 @@ package views;
 
 import java.util.Scanner;
 
-public class accountSetup {
+public class customerSetup {
 
     private Scanner scanner;
     private String mainMenu = "Please Enter An Option\n" +
             "1. Login\n" +
             "2. Create Account";
 
-    public accountSetup(Scanner scanner){
+    public customerSetup(Scanner scanner){
         this.scanner = scanner;
     }
 
