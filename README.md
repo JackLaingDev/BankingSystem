@@ -56,8 +56,9 @@ CREATE TABLE `customers` (
   `isClosed` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`customerID`)
 );
+```
 
-### 2. Accounts
+### **2. Accounts**
 
 Stores account information and links accounts to customers.
 
@@ -71,8 +72,9 @@ CREATE TABLE `accounts` (
   PRIMARY KEY (`accountID`),
   FOREIGN KEY (`customerID`) REFERENCES `customers` (`customerID`) ON DELETE CASCADE
 );
+```
 
-### 3. Transactions
+### **3. Transactions**
 
 Records transactions between accounts.
 
@@ -86,8 +88,9 @@ CREATE TABLE `transactions` (
   FOREIGN KEY (`senderID`) REFERENCES `accounts` (`accountID`),
   FOREIGN KEY (`recipientID`) REFERENCES `accounts` (`accountID`)
 );
+```
 
-## Key Classes and Responsibilities
+## **Key Classes and Responsibilities**
 
 ### 1. `AccountService`
 Handles account-related operations:
