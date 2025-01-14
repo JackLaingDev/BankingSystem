@@ -150,8 +150,11 @@ This project is licensed under the MIT License.
 
 ## Author
  **Jack Laing**  
--[GitHub](https://github.com/JackLaingDev)  
--[Email](mailto:jacklaing123@hotmail.co.uk)
--[LinkedIn](https://www.linkedin.com/in/jack-laing-801601281/)
+ 
+- [GitHub](https://github.com/JackLaingDev)  
+
+- [Email](mailto:jacklaing123@hotmail.co.uk)
+
+- [LinkedIn](https://www.linkedin.com/in/jack-laing-801601281/)
 
 
