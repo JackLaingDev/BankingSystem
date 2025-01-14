@@ -17,7 +17,6 @@ public class TransactionService {
     }
 
     // Getters and Setters
-    public Transaction getTransaction(){return transaction;}
     public void setTransaction(Transaction transaction){this.transaction = transaction;}
 
     // Methods
