@@ -23,15 +23,9 @@ public class CustomerService {
     }
 
     // Getters and Setters
-    public Customer getCustomer(){return this.customer;}
     public List<Account> getAccounts() throws SQLException{return db.getCustAccounts(this.customer);}
 
-    public void setCustomer(Customer customer){this.customer = customer;}
-
     //Methods
-    public void createCustomer() throws SQLException {
-        db.createCustomer(customer);
-    }
     public void closeCustomer() throws SQLException{
         this.db.deleteCustomer(this.customer);
     }
