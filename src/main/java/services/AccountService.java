@@ -1,15 +1,12 @@
 package services;
 
 import models.Transaction;
-import services.DatabaseService;
-import services.TransactionService;
 
 import models.Account;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.ArrayList;
 
 public class AccountService{
 
@@ -53,7 +50,7 @@ public class AccountService{
         if(newAmountSender.compareTo(BigDecimal.ZERO) >= 0 && amount.compareTo(BigDecimal.ZERO) >= 0) {
             db.setAccountBalance(this.account, newAmountSender);
             db.setAccountBalance(recipientAccount, newAmountRecipient);
-            transServ.createTransaction();
+            transServ.saveTransaction();
         }
     }
 

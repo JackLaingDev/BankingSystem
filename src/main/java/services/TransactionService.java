@@ -1,7 +1,5 @@
 package services;
 
-import services.DatabaseService;
-
 import models.Transaction;
 
 import java.sql.SQLException;
@@ -23,6 +21,6 @@ public class TransactionService {
     public void setTransaction(Transaction transaction){this.transaction = transaction;}
 
     // Methods
-    public void createTransaction() throws SQLException {db.createTransaction(transaction);}
+    public void saveTransaction() throws SQLException {db.createTransaction(transaction);}
 
 }
