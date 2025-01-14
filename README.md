@@ -152,5 +152,6 @@ This project is licensed under the MIT License.
  **Jack Laing**  
   [GitHub](https://github.com/JackLaingDev)  
   [Email](mailto:jacklaing123@hotmail.co.uk)
+  [LinkedIn](https://www.linkedin.com/in/jack-laing-801601281/)
 
 
