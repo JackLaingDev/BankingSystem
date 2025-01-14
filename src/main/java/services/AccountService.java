@@ -13,12 +13,13 @@ public class AccountService{
     // Attributes
     private Account account;
     private final DatabaseService db;
-    private TransactionService transServ;
+    private final TransactionService transServ;
 
     // Constructor
-    public AccountService(Account account, DatabaseService db) {
+    public AccountService(Account account, DatabaseService db,TransactionService transServ) {
         this.account = account;
         this.db = db;
+        this.transServ = transServ;
     }
 
     // Getters and Setters
@@ -26,7 +27,6 @@ public class AccountService{
     public List<Transaction> getTransactions() throws SQLException{return this.db.getAccTransactions(this.account);}
 
     public void setAccount(Account account){this.account = account;}
-    public void setTransServ(TransactionService transServ){this.transServ = transServ;}
 
     // Methods
     public void createAccount() throws SQLException {

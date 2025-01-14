@@ -27,7 +27,7 @@ public class Main {
         DatabaseService db = new DatabaseService();
         CustomerService custServ = new CustomerService(customer, db);
         TransactionService transServ = new TransactionService(transaction, db);
-        AccountService accServ = new AccountService(account, db);
+        AccountService accServ = new AccountService(account, db, transServ);
 
         // Initialise scanner
         Scanner scanner = new Scanner(System.in);
