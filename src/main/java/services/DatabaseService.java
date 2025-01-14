@@ -116,7 +116,7 @@ public class DatabaseService {
     public List<Account> getCustAccounts(Customer customer) throws SQLException{
         List<Account> accounts = new ArrayList<>();
 
-        sql = "SELECT * FROM accounts WHERE customerID = ?";
+        sql = "SELECT * FROM accounts WHERE customerID = ? && isClosed = 0";
 
         try(PreparedStatement statement = prepareStatement(sql)){
             statement.setInt(1, customer.getCustomerID());
