@@ -25,6 +25,8 @@ public class AccountService{
     // Getters and Setters
     public Account getAccount(){return account;}
     public List<Transaction> getTransactions() throws SQLException{return this.db.getAccTransactions(this.account);}
+    public int getAccountID(){return account.getAccountID();}
+    public BigDecimal getAccBalance(){return account.getBalance();}
 
     public void setAccount(Account account){this.account = account;}
 

@@ -41,7 +41,6 @@ public class Controller {
         this.accServ = accServ;
         this.custServ = custServ;
         this.transServ = transServ;
-        this.accServ.setTransServ(this.transServ);
 
         this.db = db;
 
@@ -142,7 +141,7 @@ public class Controller {
         }
     }
     private void displayBalance() throws SQLException {
-        BigDecimal balance = accServ.getAccount().getBalance();
+        BigDecimal balance = accServ.getAccBalance();
 
         accountMenu.displayBalance(balance);
         accountMenu();
@@ -155,7 +154,7 @@ public class Controller {
     }
     private void makeTransaction() throws SQLException{
         int recipientID = accountMenu.getRecipientID();
-        int senderID = accServ.getAccount().getAccountID();
+        int senderID = accServ.getAccountID();
         BigDecimal amount = accountMenu.getAmount();
 
         Transaction transaction = new Transaction(0, senderID,recipientID,amount);
