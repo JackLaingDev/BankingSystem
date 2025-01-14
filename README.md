@@ -149,7 +149,7 @@ This project is licensed under the MIT License.
 ---
 
 ## Author
- **Jack Laing (Graduate (MCOMP in Computing))**  
+ **Jack Laing** (Graduate (MCOMP in Computing))  
  
 - [GitHub](https://github.com/JackLaingDev)  
 
