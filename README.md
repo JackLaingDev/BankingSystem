@@ -149,7 +149,7 @@ This project is licensed under the MIT License.
 ---
 
 ## Author
-- **Your Name**  
+- **Jack Laing**  
   [GitHub](https://github.com/JackLaingDev)  
   [Email](mailto:jacklaing123@hotmail.co.uk)
 
