@@ -51,7 +51,7 @@ public class DatabaseService {
             statement.executeUpdate();
         }
     }
-    public void deleteCustomer(Customer customer) throws SQLException{
+    public void closeCustomer(Customer customer) throws SQLException{
         sql = "UPDATE customers SET isClosed = ? WHERE customerID = ?";
 
         try(PreparedStatement statement = prepareStatement(sql)){

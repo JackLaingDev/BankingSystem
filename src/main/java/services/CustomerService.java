@@ -1,13 +1,10 @@
 package services;
 
-import services.DatabaseService;
-
 import models.Customer;
 import models.Account;
 
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerService {
@@ -27,7 +24,7 @@ public class CustomerService {
 
     //Methods
     public void closeCustomer() throws SQLException{
-        this.db.deleteCustomer(this.customer);
+        this.db.closeCustomer(this.customer);
     }
     public int login(String userName, String password) throws SQLException {
 
