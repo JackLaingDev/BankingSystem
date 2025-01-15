@@ -52,6 +52,8 @@ public class DatabaseService {
         }
     }
     public void closeCustomer(Customer customer) throws SQLException{
+        List<Account> custAccounts = getCustAccounts(customer); // needed to close all of customers accounts
+
         sql = "UPDATE customers SET isClosed = ? WHERE customerID = ?";
 
         try(PreparedStatement statement = prepareStatement(sql)){
@@ -59,6 +61,10 @@ public class DatabaseService {
             statement.setInt(2, customer.getCustomerID());
 
             statement.executeUpdate();
+        }
+
+        for(Account account : custAccounts){
+            closeAccount(account);
         }
     }
     public Customer getCustomer(int customerID) throws SQLException{
