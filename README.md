@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a **banking system** implemented using the **Model-View-Controller (MVC)** design pattern. It provides functionalities for managing customers, accounts, and transactions within a banking context. The system uses **Java** for backend logic and **MySQL** as the database to store data persistently.
+This project is a banking system implemented using the Model-View-Controller (MVC) design pattern. It provides functionalities for managing customers, accounts, and transactions within a banking context. The system uses Java for backend logic and MySQL as the database for persistent data storage. While future enhancements like advanced input validation, user authentication, and a GUI are possible, the core objective of this project was to demonstrate a clear understanding and practical application of the MVC architectural pattern.
 
 The project is organized into three primary layers:
 1. **Models**: Represent the data structures (`Customer`, `Account`, `Transaction`).
