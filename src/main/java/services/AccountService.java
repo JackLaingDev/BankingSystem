@@ -55,5 +55,17 @@ public class AccountService{
             transServ.saveTransaction();
         }
     }
+    public void deposit(BigDecimal amount) throws SQLException{
+        BigDecimal newBalance = account.getBalance().add(amount);
+        if(newBalance.compareTo(BigDecimal.ZERO) >= 0 && amount.compareTo(BigDecimal.ZERO) >= 0) {
+            db.setAccountBalance(account, newBalance);
+        }
+    }
+    public void withdraw(BigDecimal amount) throws SQLException{
+        BigDecimal newBalance = account.getBalance().subtract(amount);
+        if(newBalance.compareTo(BigDecimal.ZERO) >= 0 && amount.compareTo(BigDecimal.ZERO) >= 0) {
+            db.setAccountBalance(account, newBalance);
+        }
+    }
 
 }
