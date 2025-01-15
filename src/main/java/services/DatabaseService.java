@@ -167,7 +167,7 @@ public class DatabaseService {
             statement.executeUpdate();
         }
     }
-    public void deleteAccount(Account account) throws SQLException{
+    public void closeAccount(Account account) throws SQLException{
         sql = "UPDATE accounts SET isClosed = ? WHERE accountID = ?";
 
         try(PreparedStatement statement = prepareStatement(sql)){
