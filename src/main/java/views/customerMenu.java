@@ -9,8 +9,9 @@ public class customerMenu {
 
     private final Scanner scanner;
     private final String mainMenu = "Please Enter An Option\n" +
-            "1. Choose account\n" +
-            "2. Close Customer Account";
+            "1. Choose Account\n" +
+            "2. Open Account\n" +
+            "3. Close Customer Account";
 
     public customerMenu(Scanner scanner){
         this.scanner = scanner;
@@ -34,8 +35,12 @@ public class customerMenu {
         return choice;
     }
 
-    public void accountCloseSuccess(){
-        System.out.println("Account Closed");
+    public void customerCloseSuccess(){
+        System.out.println("Customer Account Closed");
+    }
+
+    public void openCustAccountSuccess(){
+        System.out.println("Successfully Opened An Account For Customer");
     }
 
 }

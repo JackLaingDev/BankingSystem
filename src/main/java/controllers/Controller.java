@@ -111,11 +111,20 @@ public class Controller {
                 accountMenu();
                 break;
             case 2:
+                openAccount();
+                customerMenu();
+            case 3:
                 custServ.closeCustomer();
-                customerMenu.accountCloseSuccess();
+                customerMenu.customerCloseSuccess();
                 customerSetup();
                 break;
         }
+    }
+    private void openAccount() throws SQLException{
+        Account account = new Account(0, custServ.getCustomerID(), 0, BigDecimal.ZERO);
+        accServ.setAccount(account);
+        accServ.createAccount();
+        customerMenu.openCustAccountSuccess();
     }
     private void chooseAccount() throws SQLException {
 

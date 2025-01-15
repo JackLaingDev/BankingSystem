@@ -55,4 +55,6 @@ public class CustomerService {
             return -1;
         }
     }
+
+    public int getCustomerID(){return this.customer.getCustomerID();}
 }
