@@ -56,8 +56,22 @@ public class accountMenu {
         return recipientID;
     }
 
-    public BigDecimal getAmount(){
+    public BigDecimal getTransferAmount(){
         System.out.println("Please Enter The Amount You Want To Transfer:\n");
+        BigDecimal amount = scanner.nextBigDecimal();
+        scanner.nextLine();
+        return amount;
+    }
+
+    public BigDecimal getWithdrawAmount(){
+        System.out.println("Please Enter The Amount You Want To Withdraw:\n");
+        BigDecimal amount = scanner.nextBigDecimal();
+        scanner.nextLine();
+        return amount;
+    }
+
+    public BigDecimal getDepositAmount(){
+        System.out.println("Please Enter The Amount You Want To Deposit:\n");
         BigDecimal amount = scanner.nextBigDecimal();
         scanner.nextLine();
         return amount;
@@ -69,6 +83,14 @@ public class accountMenu {
 
     public void accountCloseSuccess(){
         System.out.println("Account Closed");
+    }
+
+    public void depositSuccess(){
+        System.out.println("Deposit Successful");
+    }
+
+    public void withdrawSuccess(){
+        System.out.println("Withdraw Successful");
     }
 
 }

@@ -52,6 +52,7 @@ public class AccountService{
         if(newAmountSender.compareTo(BigDecimal.ZERO) >= 0 && amount.compareTo(BigDecimal.ZERO) >= 0) {
             db.setAccountBalance(this.account, newAmountSender);
             db.setAccountBalance(recipientAccount, newAmountRecipient);
+            account.setBalance(newAmountSender);
             transServ.saveTransaction();
         }
     }
@@ -59,12 +60,14 @@ public class AccountService{
         BigDecimal newBalance = account.getBalance().add(amount);
         if(newBalance.compareTo(BigDecimal.ZERO) >= 0 && amount.compareTo(BigDecimal.ZERO) >= 0) {
             db.setAccountBalance(account, newBalance);
+            account.setBalance(newBalance);
         }
     }
     public void withdraw(BigDecimal amount) throws SQLException{
         BigDecimal newBalance = account.getBalance().subtract(amount);
         if(newBalance.compareTo(BigDecimal.ZERO) >= 0 && amount.compareTo(BigDecimal.ZERO) >= 0) {
             db.setAccountBalance(account, newBalance);
+            account.setBalance(newBalance);
         }
     }
 

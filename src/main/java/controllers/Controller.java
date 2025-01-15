@@ -163,10 +163,10 @@ public class Controller {
                 makeTransaction();
                 break;
             case 4:
-
+                deposit();
                 break;
             case 5:
-
+                withdraw();
                 break;
             case 6:
                 closeAccount();
@@ -191,7 +191,7 @@ public class Controller {
     private void makeTransaction() throws SQLException{
         int recipientID = accountMenu.getRecipientID();
         int senderID = accServ.getAccountID();
-        BigDecimal amount = accountMenu.getAmount();
+        BigDecimal amount = accountMenu.getTransferAmount();
 
         Transaction transaction = new Transaction(0, senderID,recipientID,amount);
 
@@ -203,6 +203,18 @@ public class Controller {
         accServ.closeAccount();
         accountMenu.accountCloseSuccess();
         chooseAccount();
+    }
+    private void deposit() throws SQLException{
+        BigDecimal amount = accountMenu.getDepositAmount();
+        accServ.deposit(amount);
+        accountMenu.depositSuccess();
+        accountMenu();
+    }
+    private void withdraw() throws SQLException{
+        BigDecimal amount = accountMenu.getWithdrawAmount();
+        accServ.withdraw(amount);
+        accountMenu.withdrawSuccess();
+        accountMenu();
     }
 
 }
