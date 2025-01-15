@@ -130,6 +130,11 @@ public class Controller {
 
         List<Account> accounts = custServ.getAccounts();
         int choice = customerMenu.displayAccounts(custServ.getAccounts());
+
+        if(choice == accounts.size()+1){
+            customerMenu();
+        }
+
         accServ.setAccount(accounts.get(choice - 1));
     }
     private void accountMenu() throws SQLException {
@@ -146,6 +151,9 @@ public class Controller {
                 break;
             case 4:
                 accServ.closeAccount();
+                break;
+            case 5:
+                chooseAccount();
                 break;
         }
     }
