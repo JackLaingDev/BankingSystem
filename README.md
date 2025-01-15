@@ -21,6 +21,8 @@ The project is organized into three primary layers:
 - Create and close bank accounts.
 - Retrieve account details and transaction history.
 - Perform transactions (transfer funds between accounts).
+- Deposit funds.
+- Withdraw funds.
 
 ### **Transaction Management**
 - Record and store transactions in the database.
