@@ -118,11 +118,9 @@ public class Controller {
         switch (customerMenu.displayMenu()){
             case 1:
                 chooseAccount();
-                accountMenu();
                 break;
             case 2:
                 openAccount();
-                customerMenu();
             case 3:
                 closeCustomer();
                 break;
@@ -133,6 +131,7 @@ public class Controller {
         accServ.setAccount(account);
         accServ.createAccount();
         customerMenu.openCustAccountSuccess();
+        customerMenu();
     }
     private void chooseAccount() throws SQLException {
 
@@ -144,6 +143,7 @@ public class Controller {
         }
 
         accServ.setAccount(accounts.get(choice - 1));
+        accountMenu();
     }
     private void closeCustomer() throws SQLException{
         custServ.closeCustomer();
@@ -172,7 +172,7 @@ public class Controller {
                 closeAccount();
                 break;
             case 7:
-                chooseAccount();
+                customerMenu();
                 break;
         }
     }
@@ -202,7 +202,7 @@ public class Controller {
     private void closeAccount() throws SQLException{
         accServ.closeAccount();
         accountMenu.accountCloseSuccess();
-        chooseAccount();
+        customerMenu();
     }
     private void deposit() throws SQLException{
         BigDecimal amount = accountMenu.getDepositAmount();

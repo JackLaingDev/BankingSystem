@@ -142,8 +142,8 @@ Manages database queries and updates:
 - Create a graphical user interface (GUI) for better user experience.
 - Use connection pooling for improved database performance.
 - Integrate automated testing for services.
+- Implement robust input validation and transaction eligibility checks.
 - Implement better CRUD functions for improved code reusability.
-- Add input validation.
 
 ---
 
