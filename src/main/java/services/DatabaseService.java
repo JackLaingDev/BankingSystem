@@ -71,7 +71,7 @@ public class DatabaseService {
         sql = "SELECT * FROM customers WHERE username = ?";
 
         // Initialise customer
-        Customer customer = new Customer(0, "", "", "", "");
+        Customer customer = new Customer(-1, "", "", "", "");
 
         try(PreparedStatement statement = prepareStatement(sql)){
             statement.setString(1, userName);

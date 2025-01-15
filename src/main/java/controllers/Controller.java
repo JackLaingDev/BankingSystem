@@ -71,14 +71,24 @@ public class Controller {
         String userName = customerSetup.getUsername();
         String password = customerSetup.getPassword();
 
+        int loginStatus = custServ.login(userName, password);
+
         // If login fails, retry customerSetup
-        if(custServ.login(userName, password) == -1){
-            customerSetup.loginFailure();
+        if(loginStatus == -1){
+            customerSetup.accountNotFound();
             customerSetup();
         }
-
-        customerSetup.loginSuccess();
-
+        else if(loginStatus == -2){
+            customerSetup.accountIsClosed();
+            customerSetup();
+        }
+        else if(loginStatus == -3){
+            customerSetup.incorrectPassword();
+            customerSetup();
+        }
+        else if (loginStatus == 0) {
+            customerSetup.loginSuccess();
+        }
         // Customer menu
         customerMenu();
     }

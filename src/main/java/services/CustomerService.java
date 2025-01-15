@@ -31,13 +31,14 @@ public class CustomerService {
         Customer customer = this.db.getCustomer(userName);
         String custPassword = customer.getPassword();
 
-        if(customer == null){
-            System.out.println("No Customer With This Username exists");
+        if(customer.getCustomerID() == -1){
             return -1;
         }
         else if (customer.getIsClosed()) {
-            System.out.println("This Customer Account Is Closed");
-            return -1;
+            return -2;
+        }
+        else if (!custPassword.equals(password)){
+            return -3;
         }
         else if (custPassword.equals(password)) {
             this.customer = customer;

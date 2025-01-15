@@ -51,8 +51,16 @@ public class customerSetup {
         return scanner.nextLine();
     }
 
-    public void loginFailure(){
-        System.out.println("Login Failed, Please Try Again");
+    public void accountNotFound(){
+        System.out.println("No Account With This Username Exists");
+    }
+
+    public void accountIsClosed(){
+        System.out.println("This Account Is Closed");
+    }
+
+    public void incorrectPassword(){
+        System.out.println("This Password Is Incorrect");
     }
 
     public void registrationFailure(){
