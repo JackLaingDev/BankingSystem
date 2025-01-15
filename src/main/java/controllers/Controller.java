@@ -124,9 +124,7 @@ public class Controller {
                 openAccount();
                 customerMenu();
             case 3:
-                custServ.closeCustomer();
-                customerMenu.customerCloseSuccess();
-                customerSetup();
+                closeCustomer();
                 break;
         }
     }
@@ -147,6 +145,11 @@ public class Controller {
 
         accServ.setAccount(accounts.get(choice - 1));
     }
+    private void closeCustomer() throws SQLException{
+        custServ.closeCustomer();
+        customerMenu.customerCloseSuccess();
+        customerSetup();
+    }
     private void accountMenu() throws SQLException {
 
         switch (accountMenu.displayMenu()){
@@ -160,9 +163,15 @@ public class Controller {
                 makeTransaction();
                 break;
             case 4:
-                accServ.closeAccount();
+
                 break;
             case 5:
+
+                break;
+            case 6:
+                closeAccount();
+                break;
+            case 7:
                 chooseAccount();
                 break;
         }
@@ -189,6 +198,11 @@ public class Controller {
         accServ.makeTransaction(transaction);
         accountMenu.transactionSuccess();
         accountMenu();
+    }
+    private void closeAccount() throws SQLException{
+        accServ.closeAccount();
+        accountMenu.accountCloseSuccess();
+        chooseAccount();
     }
 
 }

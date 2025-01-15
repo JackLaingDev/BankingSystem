@@ -14,8 +14,10 @@ public class accountMenu {
             "1. Check Balance\n" +
             "2. Check Transactions\n" +
             "3. Make Transaction\n" +
-            "4. Close Account\n" +
-            "5. Go Back";
+            "4. Deposit\n" +
+            "5. Withdraw\n" +
+            "6. Close Account\n" +
+            "7. Go Back";
 
     public accountMenu(Scanner scanner){
         this.scanner = scanner;
@@ -63,6 +65,10 @@ public class accountMenu {
 
     public void transactionSuccess(){
         System.out.println("Transaction Successful");
+    }
+
+    public void accountCloseSuccess(){
+        System.out.println("Account Closed");
     }
 
 }
