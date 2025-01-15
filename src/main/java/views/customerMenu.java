@@ -30,6 +30,7 @@ public class customerMenu {
         for(int i = 0; i < accounts.size(); i++){
             System.out.printf("%d. Account ID: %d\n", i+1, accounts.get(i).getAccountID());
         }
+        System.out.printf("%d. Go Back\n", accounts.size() + 1);
         int choice = scanner.nextInt();
         scanner.nextLine();
         return choice;

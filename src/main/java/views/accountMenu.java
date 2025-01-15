@@ -14,7 +14,8 @@ public class accountMenu {
             "1. Check Balance\n" +
             "2. Check Transactions\n" +
             "3. Make Transaction\n" +
-            "4. Close Account";
+            "4. Close Account\n" +
+            "5. Go Back";
 
     public accountMenu(Scanner scanner){
         this.scanner = scanner;
