@@ -121,6 +121,7 @@ public class Controller {
                 break;
             case 2:
                 openAccount();
+                break;
             case 3:
                 closeCustomer();
                 break;
